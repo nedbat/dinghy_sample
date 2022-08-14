@@ -1,6 +1,8 @@
 # Sample dinghy digests
 
-This repo is an example of how to publish daily digests of GitHub activity with [dinghy][https://pypi.org/project/dinghy].
+This repo is an example of how to publish daily digests of GitHub activity with [dinghy](https://pypi.org/project/dinghy).  The sample digests some PSF projects showing [the activity in the last three days](https://nedbat.github.io/dinghy_sample/3day.html).
+
+## Publishing your own digests
 
 You can use this as a starting point for your own automatic publishing.
 
