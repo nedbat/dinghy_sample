@@ -1,0 +1,18 @@
+# This is used to create the sample digest for the readme.
+
+defaults:
+  title: Sample Dinghy report
+  items:
+    - https://github.com/psf/black
+    - https://github.com/psf/requests
+    - https://github.com/python/peps
+
+digests:
+  - digest: 1week.html
+    since: 1 week
+
+  - digest: 3day.html
+    since: 3 day
+
+  - digest: 1day.html
+    since: 1 day
