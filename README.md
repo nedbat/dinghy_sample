@@ -10,8 +10,4 @@ The work is done in the .github/workflows/daily-digest.yml Action.  It needs two
 
 - `DINGHY_ACCESS_TOKEN` is a GitHub personal access token. [Create one](https://github.com/settings/tokens) with the permissions you need.
 
-- `DIGESTER_EMAIL` is the email address to use as the author of the commits that add the digest each day.
-
-You will need a `digests` branch.  Create one from `main`.  The action will update this branch with digest content.
-
-The digest itself is published using GitHub Pages.  Configure your repo to publish the root directory from the `digests` branch.
+The digest itself is published using GitHub Pages.  Configure your repo to publish GitHub Pages using a custom workflow.

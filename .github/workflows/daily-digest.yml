@@ -3,6 +3,7 @@
 name: "Daily activity digests"
 
 on:
+  push:
   schedule:
     # 1pm UTC, so 8/9am Eastern.
     # https://crontab.guru/#02_13_*_*_*
@@ -13,10 +14,21 @@ defaults:
   run:
     shell: bash
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   digest:
     name: "Daily digest"
     runs-on: ubuntu-latest
+    environment: github-pages
 
     steps:
       - name: "Check out the repo"
@@ -37,21 +49,14 @@ jobs:
         run: |
           python -m dinghy
 
-      - name: "Publish digests"
-        # You have to define a repo secret with the email address you want to
-        # use for the git commit author.
-        env:
-          DIGESTER_EMAIL: ${{ secrets.DIGESTER_EMAIL }}
-        run: |
-          set -xe
-          git status
-          git add *.html
-          git stash
-          git fetch --all
-          git switch digests
-          git reset --hard origin/main
-          git stash pop
-          git config --global user.email "$DIGESTER_EMAIL"
-          git config --global user.name "dinghy digester"
-          git commit -am "docs: latest digests"
-          git push --force
+      - name: "Setup Pages"
+        uses: actions/configure-pages@v1
+
+      - name: "Upload artifact"
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: '.'
+
+      - name: "Deploy to GitHub Pages"
+        uses: actions/deploy-pages@main
