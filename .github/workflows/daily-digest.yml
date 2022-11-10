@@ -45,6 +45,7 @@ jobs:
 
       - name: "Run dinghy"
         env:
+          # A personal access token with public_repo permission.
           GITHUB_TOKEN: ${{ secrets.DINGHY_ACCESS_TOKEN }}
         run: |
           python -m dinghy
