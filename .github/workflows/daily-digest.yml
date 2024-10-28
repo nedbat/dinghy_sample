@@ -16,8 +16,8 @@ defaults:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  #pages: write
+  #id-token: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -29,10 +29,16 @@ jobs:
     name: "Daily digest"
     runs-on: ubuntu-latest
     environment: github-pages
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     steps:
       - name: "Check out the repo"
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: "Install Python"
         uses: actions/setup-python@v5
