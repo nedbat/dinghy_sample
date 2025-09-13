@@ -16,8 +16,6 @@ defaults:
 
 permissions:
   contents: read
-  #pages: write
-  #id-token: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -31,8 +29,8 @@ jobs:
     environment: github-pages
     permissions:
       contents: read
-      pages: write
-      id-token: write
+      pages: write      # Needed to deploy to GitHub pages
+      id-token: write   # Needed to deploy to GitHub pages
 
     steps:
       - name: "Check out the repo"
